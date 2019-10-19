@@ -1,16 +1,17 @@
-language: python
+language: cpp
+compiler: gcc
 os:
     - linux
     - osx
-python:
-    - "2.7"
-    - "3.5"
-    - "3.6"
-    - "3.7"
+env:
+    - BUILD_PY=2.7
+    - BUILD_PY=3.5
+    - BUILD_PY=3.6
+    - BUILD_PY=3.7
 before_install:
     - MINICONDA_VERSION=latest
     - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then MINICONDA_OS=Linux; else MINICONDA_OS=MacOSX; fi
-    - if [[ "$TRAVIS_PYTHON_VERSION" == "2.7" ]]; then MINICONDA_PY=2; else MINICONDA_PY=3; fi
+    - if [[ "$BUILD_PY" == "2.7" ]]; then MINICONDA_PY=2; else MINICONDA_PY=3; fi
     - wget https://repo.anaconda.com/miniconda/Miniconda$MINICONDA_PY-$MINICONDA_VERSION-$MINICONDA_OS-x86_64.sh -O miniconda.sh
     - bash miniconda.sh -b -p "$HOME"/miniconda
     - source "$HOME"/miniconda/etc/profile.d/conda.sh
@@ -28,7 +29,7 @@ install:
     # git -C psrchive log --format="%cd" --date=short | uniq -c | head -n1
     # Then split it up inside the meta.yaml.
     - export VERSION=$(git -C ./psrchive log -1 --format='%cd' --date=short | sed 's/-/./g')
-    - conda build --python $TRAVIS_PYTHON_VERSION ./recipe
+    - conda build --python $BUILD_PY ./recipe
     - conda create -n test --use-local psrchive
 script:
     - conda activate test
