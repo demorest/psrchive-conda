@@ -1,7 +1,7 @@
 language: cpp
 compiler: gcc
 os:
-    #    - linux
+    - linux
     - osx
 osx_image: xcode9.2
 env:
@@ -37,6 +37,6 @@ script:
     - psrchive --version
     - python -c 'import psrchive'
 after_success:
-    - export PKGFILE=$(conda build recipe --output)
+    - export PKGFILE=$(conda build --python $BUILD_PY ./recipe --output)
     - conda install anaconda-client
     - anaconda -t $CONDA_UPLOAD_TOKEN upload -u demorest --force $PKGFILE
