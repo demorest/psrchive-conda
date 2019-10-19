@@ -28,13 +28,13 @@ install:
     # git -C psrchive log --format="%cd" --date=short | uniq -c | head -n1
     # Then split it up inside the meta.yaml.
     - export VERSION=$(git -C ./psrchive log -1 --format='%cd' --date=short | sed 's/-/./g')
-    - conda build ./recipe
+    - conda build --python $TRAVIS_PYTHON_VERSION ./recipe
     - conda activate
     - conda install psrchive --use-local
 script:
     - psrchive --version
     - python -c 'import psrchive'
-#after_success:
-#    - export PKGFILE=$(conda build recipe --output)
-#    - conda install anaconda-client
-#    - anaconda -t $CONDA_UPLOAD_TOKEN upload -u demorest --force $PKGFILE
+after_success:
+    - export PKGFILE=$(conda build recipe --output)
+    - conda install anaconda-client
+    - anaconda -t $CONDA_UPLOAD_TOKEN upload -u demorest --force $PKGFILE
