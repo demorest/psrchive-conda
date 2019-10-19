@@ -3,7 +3,8 @@ package:
     version: {{ os.environ.get('VERSION') }} 
 
 source:
-    git_url: ../psrchive
+    # Assumes source has been checkout out here:
+    path: ../psrchive
         
 build:
     number: 1
@@ -17,10 +18,6 @@ requirements:
         - {{ compiler('cxx') }}
         - {{ compiler('c') }}
         - {{ compiler('fortran') }}
-          #- {{ cdt('xorg-x11-proto-devel') }}
-          #- {{ cdt('libx11-devel') }}
-          #- {{ cdt('libxcb') }}
-          #- {{ cdt('libxau') }}
         - autoconf
         - automake
         - libtool
