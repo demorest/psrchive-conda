@@ -5,6 +5,8 @@ os:
 python:
     - "2.7"
     - "3.5"
+    - "3.6"
+    - "3.7"
 before_install:
     - MINICONDA_VERSION=latest
     - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then MINICONDA_OS=Linux; else MINICONDA_OS=MacOSX; fi
@@ -27,9 +29,9 @@ install:
     # Then split it up inside the meta.yaml.
     - export VERSION=$(git -C ./psrchive log -1 --format='%cd' --date=short | sed 's/-/./g')
     - conda build --python $TRAVIS_PYTHON_VERSION ./recipe
-    - conda activate
-    - conda install psrchive --use-local
+    - conda create -n test --use-local psrchive
 script:
+    - conda activate test
     - psrchive --version
     - python -c 'import psrchive'
 after_success:
