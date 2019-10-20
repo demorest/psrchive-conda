@@ -5,9 +5,9 @@ os:
     - osx
 osx_image: xcode9.2
 env:
-    - BUILD_PY=2.7
-    - BUILD_PY=3.5
-    - BUILD_PY=3.6
+    #    - BUILD_PY=2.7
+    #    - BUILD_PY=3.5
+    #    - BUILD_PY=3.6
     - BUILD_PY=3.7
 before_install:
     - MINICONDA_VERSION=latest
@@ -36,7 +36,7 @@ script:
     - conda activate test
     - psrchive --version
     - python -c 'import psrchive'
-after_success:
-    - export PKGFILE=$(conda build --python $BUILD_PY ./recipe --output)
-    - conda install anaconda-client
-    - anaconda -t $CONDA_UPLOAD_TOKEN upload -u demorest --force $PKGFILE
+#after_success:
+#    - export PKGFILE=$(conda build --python $BUILD_PY ./recipe --output)
+#    - conda install anaconda-client
+#    - anaconda -t $CONDA_UPLOAD_TOKEN upload -u demorest --force $PKGFILE
