@@ -21,7 +21,7 @@ before_install:
     - conda config --add channels conda-forge
     - conda config --add channels demorest
       #    - conda update -q conda
-    - conda install conda-build=3.2 python=3.6
+    - conda install conda-build=3.16
     - conda info -a
     - export LANG=en_US.UTF-8
 install:
