@@ -2,8 +2,8 @@
 ./bootstrap
 ./configure --prefix=$PREFIX --disable-local --enable-shared \
   --includedir=$PREFIX/include/psrchive --with-Qt-dir=no \
-  CXXFLAGS="-O2 -std=c++98" PGPLOT_DIR=$PREFIX/include/pgplot
-make -j3
+  CXXFLAGS="-std=c++98" PGPLOT_DIR=$PREFIX/include/pgplot
+make -j2
 make install
 
 # This foo will make conda automatically define a PSRCHIVE env variable
