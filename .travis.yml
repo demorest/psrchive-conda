@@ -30,7 +30,7 @@ install:
     # git -C psrchive log --format="%cd" --date=short | uniq -c | head -n1
     # Then split it up inside the meta.yaml.
     - export VERSION=$(git -C ./psrchive log -1 --format='%cd' --date=short | sed 's/-/./g')
-    - bash -c 'conda build --python $BUILD_PY ./recipe |& sed 's%_placehold%%g''
+    - conda build --python $BUILD_PY ./recipe 2>&1 | sed 's/_placehold//g'
     - conda create -n test --use-local psrchive
 script:
     - conda activate test
