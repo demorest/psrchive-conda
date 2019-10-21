@@ -5,9 +5,9 @@ os:
     - osx
 osx_image: xcode9.2
 env:
-    #    - BUILD_PY=2.7
+    - BUILD_PY=2.7
     #    - BUILD_PY=3.5
-    - BUILD_PY=3.6
+    #- BUILD_PY=3.6
     #    - BUILD_PY=3.7
 before_install:
     - MINICONDA_VERSION=latest
