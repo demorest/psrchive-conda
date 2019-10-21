@@ -1,5 +1,9 @@
 #! /bin/bash
 ./bootstrap
+
+export CXXFLAGS=$(echo "$CXXFLAGS" | sed 's/-O2//')
+echo "CXXFLAGS $CXXFLAGS"
+
 ./configure --prefix=$PREFIX --disable-local --enable-shared \
   --includedir=$PREFIX/include/psrchive --with-Qt-dir=no \
   PGPLOT_DIR=$PREFIX/include/pgplot
