@@ -2,7 +2,7 @@
 ./bootstrap
 ./configure --prefix=$PREFIX --disable-local --enable-shared \
   --includedir=$PREFIX/include/psrchive --with-Qt-dir=no \
-  CXXFLAGS="-std=c++98" PGPLOT_DIR=$PREFIX/include/pgplot
+  PGPLOT_DIR=$PREFIX/include/pgplot
 make -j2
 make install
 
