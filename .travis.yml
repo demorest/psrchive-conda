@@ -18,10 +18,10 @@ before_install:
     - source "$HOME"/miniconda/etc/profile.d/conda.sh
     - hash -r 
     - conda config --set always_yes yes --set changeps1 no
-    - conda config --add channels conda-forge
-    - conda config --add channels demorest
       #    - conda update -q conda
     - conda install conda-build=3.2 python=3.6
+    - conda config --add channels conda-forge
+    - conda config --add channels demorest
     - conda info -a
     - export LANG=en_US.UTF-8
 install:
