@@ -1,7 +1,14 @@
 #! /bin/bash
 ./bootstrap
 
-export CXXFLAGS=$(echo "$CXXFLAGS" | sed 's/-O2//' | perl -pe 's/-std=.+ /-std=c++98 /')
+# Change to right C++ standard for psrchive:
+export CXXFLAGS=$(echo "$CXXFLAGS" | perl -pe 's/-std=.+ /-std=c++98 /')
+
+# Attempt to speed up compilation on Travis MacOS:
+if [[ "$TRAVIS_OS_NAME" = "osx" ]]; then
+    export CXXFLAGS=$(echo "$CXXFLAGS" | sed 's/-O2//')
+fi
+
 echo "CXXFLAGS $CXXFLAGS"
 
 ./configure --prefix=$PREFIX --disable-local --enable-shared \
