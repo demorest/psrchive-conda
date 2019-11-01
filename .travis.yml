@@ -1,14 +1,14 @@
 language: cpp
 compiler: gcc
 os:
-    #    - linux
+    - linux
     - osx
 osx_image: xcode9.2
 env:
-    - BUILD_PY=2.7
-    #    - BUILD_PY=3.5
+    #- BUILD_PY=2.7
+    #- BUILD_PY=3.5
     #- BUILD_PY=3.6
-    #    - BUILD_PY=3.7
+    - BUILD_PY=3.7
 before_install:
     - MINICONDA_VERSION=latest
     - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then MINICONDA_OS=Linux; else MINICONDA_OS=MacOSX; fi
@@ -19,6 +19,7 @@ before_install:
     - hash -r 
     - conda config --set always_yes yes --set changeps1 no
       #    - conda update -q conda
+    # conda-build 3.16 is much faster on OSX:
     - conda install conda-build=3.16
     - conda config --add channels conda-forge
     - conda config --add channels demorest
