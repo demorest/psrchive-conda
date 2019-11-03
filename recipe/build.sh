@@ -6,7 +6,10 @@ export CXXFLAGS=$(echo "$CXXFLAGS" | perl -pe 's/-std=\S+\s/-std=c++98 /')
 
 # Attempt to speed up compilation on Travis MacOS:
 if [[ "$TRAVIS_OS_NAME" = "osx" ]]; then
-    export CXXFLAGS=$(echo "$CXXFLAGS" | sed 's/-O2//')
+    export CXXFLAGS=$(echo "$CXXFLAGS" | sed 's/-O2 //')
+    export CXXFLAGS=$(echo "$CXXFLAGS" | sed 's/-fstack-protector-strong //')
+    export CXXFLAGS=$(echo "$CXXFLAGS" | sed 's/-ftree-vectorize //')
+    export CXXFLAGS="$CXXFLAGS -w"
 fi
 
 echo "CXXFLAGS $CXXFLAGS"
