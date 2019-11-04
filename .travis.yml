@@ -18,11 +18,11 @@ before_install:
     - source "$HOME"/miniconda/etc/profile.d/conda.sh
     - hash -r 
     - conda config --set always_yes yes --set changeps1 no
-      #    - conda update -q conda
-    # conda-build 3.16 is much faster on OSX:
-    - conda install conda-build=3.16
     - conda config --add channels conda-forge
     - conda config --add channels demorest
+      #    - conda update -q conda
+    # conda-build 3.16 is much faster on OSX:
+    - conda install conda-build=3.16 ripgrep
     - conda info -a
     - export LANG=en_US.UTF-8
 install:
@@ -31,14 +31,14 @@ install:
     # git -C psrchive log --format="%cd" --date=short | uniq -c | head -n1
     # Then split it up inside the meta.yaml.
     - export VERSION=$(git -C ./psrchive log -1 --format='%cd' --date=short | sed 's/-/./g')
-      #- conda build --python $BUILD_PY ./recipe 2>&1 | sed 's/_placehold//g'
     - conda build --python $BUILD_PY ./recipe
-    - conda create -n test --use-local psrchive
-script:
-    - conda activate test
-    - psrchive --version
-    - python -c 'import psrchive'
-#after_success:
+  #    - conda create -n test --use-local psrchive
+#script:
+  # conda-build tests so we don't really need to re-test
+  #    - conda activate test
+  #    - psrchive --version
+  #    - python -c 'import psrchive'
+after_success:
     - export PKGFILE=$(conda build --python $BUILD_PY ./recipe --output)
     - conda install anaconda-client
     - anaconda -t $CONDA_UPLOAD_TOKEN upload -u demorest --force $PKGFILE
