@@ -12,17 +12,18 @@ env:
 before_install:
     - MINICONDA_VERSION=latest
     - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then MINICONDA_OS=Linux; else MINICONDA_OS=MacOSX; fi
-    - if [[ "$BUILD_PY" == "2.7" ]]; then MINICONDA_PY=2; else MINICONDA_PY=3; fi
+      #- if [[ "$BUILD_PY" == "2.7" ]]; then MINICONDA_PY=2; else MINICONDA_PY=3; fi
+    - MINICONDA_PY=3
     - wget https://repo.anaconda.com/miniconda/Miniconda$MINICONDA_PY-$MINICONDA_VERSION-$MINICONDA_OS-x86_64.sh -O miniconda.sh
     - bash miniconda.sh -b -p "$HOME"/miniconda
     - source "$HOME"/miniconda/etc/profile.d/conda.sh
     - hash -r 
     - conda config --set always_yes yes --set changeps1 no
+    - conda install conda-build=3.16 ripgrep
     - conda config --add channels conda-forge
     - conda config --add channels demorest
       #    - conda update -q conda
     # conda-build 3.16 is much faster on OSX:
-    - conda install conda-build=3.16 ripgrep
     - conda info -a
     - export LANG=en_US.UTF-8
 install:
