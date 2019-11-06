@@ -40,6 +40,7 @@ script:
   #    - psrchive --version
   #    - python -c 'import psrchive'
 after_success:
+    - conda activate base
     - export PKGFILE=$(conda build --python $BUILD_PY ./recipe --output)
     - conda install anaconda-client
     - anaconda -t $CONDA_UPLOAD_TOKEN upload -u demorest --force $PKGFILE
