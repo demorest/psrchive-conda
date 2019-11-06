@@ -1,7 +1,7 @@
 language: cpp
 compiler: gcc
 os:
-    #    - linux
+    - linux
     - osx
 osx_image: xcode9.2
 env:
