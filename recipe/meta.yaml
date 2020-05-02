@@ -31,7 +31,6 @@ requirements:
         - python {{ python }}
         - numpy
         - fftw
-        - epsic
     run:
         - cfitsio
         - pgplot
@@ -40,4 +39,3 @@ requirements:
         - numpy
         - tempo
         - fftw
-        - epsic
