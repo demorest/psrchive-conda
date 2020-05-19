@@ -12,6 +12,8 @@ build:
         - TRAVIS_OS_NAME
 
 test:
+    commands:
+        - pav -h
     imports:
         - psrchive
 
@@ -31,6 +33,7 @@ requirements:
         - python {{ python }}
         - numpy
         - fftw
+        - tempo2
     run:
         - cfitsio
         - pgplot
@@ -38,4 +41,5 @@ requirements:
         - python
         - numpy
         - tempo
+        - tempo2
         - fftw
