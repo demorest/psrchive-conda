@@ -19,7 +19,7 @@ before_install:
     - source "$HOME"/miniconda/etc/profile.d/conda.sh
     - hash -r 
     - conda config --set always_yes yes --set changeps1 no
-    - conda install conda-build=3.16 ripgrep
+    - conda install conda-build ripgrep
     - conda config --add channels conda-forge
     - conda config --add channels demorest
       #    - conda update -q conda
